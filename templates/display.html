@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+<head>
+    {% block title %}
+    WEATHER - Display
+    {% endblock %}
+    
+</head>
+    {% block content %}
+            <div class="wrapper">
+                <div class="right">
+                    {% if main_ == 'Rain' %}
+                        <img src="/static/rain.jpg" height="500" width="900" alt="" style="margin-left: 190px;">
+                    {% elif main_=='Clouds' %}
+                        <img src="/static/clouds.jpg" height="500" width="900" alt="" style="margin-left: 190px;">
+                    {% elif main_=='Clear' %}
+                        <img src="/static/clearsky.png" height="500" width="900" alt="" style="margin-left: 190px;">
+                    {% elif main_=='Snow' %}
+                        <img src="/static/winter.jpg" height="500" width="900" alt="" style="margin-left: 190px;">
+                    {% elif main_=='Thunderstorm' %}
+                        <img src="/static/weather.jpg" height="500" width="900" alt="" style="margin-left: 190px;">
+                    {% elif main_=='Drizzle' %}
+                        <img src="/static/drizzle.jpg" height="500" width="900" alt="" style="margin-left: 190px;">
+                    {% endif %}
+                </div>
+            <div class="left" style="margin-left: 150px;padding: 20px;margin-top: 30px;background-color: coral;font-weight: bold;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;background-size: auto;margin-right: 200px;margin-bottom: 20px;">
+               <h2>City : {{ name }}</h2><br>
+               <h6>{% for key,item in weather.items() %}
+                    {{ key }} : {{ item }}&nbsp &nbsp
+                {% endfor %}</h6>
+                <h6>{% for key,item in main.items() %}
+                    {{ key }} : {{ item }}&nbsp &nbsp
+                {% endfor %}</h6>
+                <h6>Visibility : {{ visibility }}</h6>
+                <h6>{% for key,item in wind.items() %}
+                    {{ key }} : {{ item }}
+                {% endfor %}</h6>
+                <h6>Sunrise : {{ sunrise }}
+                Sunset : {{ sunset }}</h6>
+            </div>
+
+        </div>
+    {%  endblock %}

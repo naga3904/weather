@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% block title %}
+WEATHER - Home
+{% endblock %}
+        {% block content %}
+        <img name="slide" height="500" width="1000">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group" style="margin-left: 100px;margin-top: 20px;margin-right: 100px;">
+
+                <h4>{{ form.input_.label(class="form-control-label") }}</h4>
+                {% if form.input_.errors %}
+                {{ form.input_(class="form-control form-control-lg") }}
+                {% for error in errors %}
+                    {{ error }}
+                {% endfor %}
+                {% else %}
+                    {{ form.input_(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group" style="margin-left: 100px;margin-top: 20px;margin-right: 100px;">
+                {{ form.submit(class='btn btn-outline-info') }}
+            </div>    
+        </form>
+        <script>
+            var i = 0;
+            var images = []
+            var time = 3000;
+            //image list
+            images[0] = '/static/weather.jpg';
+            images[1] = '/static/summer.png';
+            images[2] = '/static/winter.jpg';
+            images[3] = '/static/spring.jpg';
+            images[4] = '/static/rain.jpg'; 
+        
+            //fuction to change image
+            function changeImg(){
+            document.slide.src = images[i];
+            if(i < images.length-1){
+                 i++;
+            }else{
+                i=0;
+            }
+            setTimeout("changeImg()", time);
+            }
+            window.onload = changeImg;
+        </script>
+        {% endblock %}
+
+
